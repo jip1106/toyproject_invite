@@ -1,4 +1,4 @@
-package com.jun.toyproject.invite.admin.main.controller;
+package com.jun.toyproject.invite.admin.view.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminViewController {
 
-    private final static String FOLDER_PREFIX = "/admin/";
+    private final static String VIEW_FOLDER = "admin/";
+
 
     @GetMapping("/")
     public String adminHome(){
-        return FOLDER_PREFIX + "index";
+        return VIEW_FOLDER + "index";
     }
 
     @GetMapping("/login")
     public String adminLoginPage(){
-        return FOLDER_PREFIX + "login";
+        return VIEW_FOLDER + "login";
     }
 }

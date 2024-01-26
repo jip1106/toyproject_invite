@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title,script,links)">
+    <title th:replace="${title}">Hielo by TEMPLATED</title>
+    <!-- 공통 -->
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" src="/js/skel.min.js"></script>
+    <script type="text/javascript" src="/js/util.js">
+    <script type="text/javascript" src="/js/assets/util.js"></script>
+
+
+     <!-- 추가 -->
+    <th:block th:replace="${script}" />
+
+
+</head>
+

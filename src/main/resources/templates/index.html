@@ -1,31 +1,20 @@
-<!DOCTYPE HTML>
-<!--
-	Hielo by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-<head>
-    <title>Hielo by TEMPLATED</title>
-    <meta charset="utf-8">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/main.css">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::links})}">
+    <title> 메인페이지 </title>
+    <script type="text/javascript" src="/js/main.js"></script>
 </head>
+
 <body>
 
+<!--/* 공통 영역 st */-->
 <!-- Header -->
-<header id="header" class="alt">
-    <div class="logo"><a href="index.html">Hielo <span>by TEMPLATED</span></a></div>
-    <a href="#menu">Menu</a>
-</header><!-- Nav -->
-<nav id="menu">
-    <ul class="links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/example/generic">Generic</a></li>
-        <li><a href="/example/elements">Elements</a></li>
-    </ul>
-</nav><!-- Banner -->
+<header th:replace="~{/user/layout/common/header :: headerFragment}"></header>
+<!-- Nav -->
+<nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
+<!--/* 공통 영역 end */-->
+
+
+<!-- Banner -->
 <section class="banner full">
     <article><img src="/images/slide01.jpg" alt="" width="1440" height="961">
         <div class="inner">
@@ -141,25 +130,11 @@
         </div>
     </div>
 </section><!-- Footer -->
-<footer id="footer">
-    <div class="container">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
-    </div>
-</footer>
-<div class="copyright">
-    Made with <a href="https://templated.co/">Templated</a>.
-</div>
 
-<!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.scrollex.min.js"></script>
-<script src="/js/skel.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
+<!--/* 공통 영역 st */-->
+<footer th:replace="~{/user/layout/common/footer :: footerFragment}" id="footer"></footer>
+<div th:replace="~{/user/layout/common/footer :: copyrightFragment}"></div>
+<!--/* 공통 영역 end */-->
+
 </body>
 </html>
