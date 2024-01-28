@@ -1,25 +1,18 @@
-<!DOCTYPE HTML>
-<html>
-<head><title>Hielo by TEMPLATED</title>
-    <meta charset="utf-8">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/main.css">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::links})}">
+    <title> 수정페이지 </title>
+    <script type="text/javascript" src="/js/main.js"></script>
 </head>
-<body class="subpage">
 
+<body>
+
+<!--/* 공통 영역 st */-->
 <!-- Header -->
-<header id="header">
-    <div class="logo"><a href="/">Hielo <span>by TEMPLATED</span></a></div>
-    <a href="#menu">Menu</a>
-</header><!-- Nav -->
-<nav id="menu">
-    <ul class="links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/example/generic">Generic</a></li>
-        <li><a href="/example/elements">Elements</a></li>
-    </ul>
-</nav><!-- One -->
+<header th:replace="~{/user/layout/common/header :: headerFragment}"></header>
+<!-- Nav -->
+<nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
+<!--/* 공통 영역 end */-->
+
 <section id="One" class="wrapper style3">
     <div class="inner">
         <header class="align-center"><p>Sed amet nulla</p>
@@ -449,26 +442,13 @@ print 'It took ' + i + ' iterations to sort the deck.';
 
 </div>
 
-<!-- Footer -->
-<footer id="footer">
-    <div class="container">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
-    </div>
-</footer>
-<div class="copyright">
-    Made with <a href="https://templated.co/">Templated</a>.
-</div>
 
-<!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.scrollex.min.js"></script>
-<script src="/js/skel.min.js"></script>
-<script src="/js/util.js"></script>
-<script src="/js/main.js"></script>
+
+
+<!--/* 공통 영역 st */-->
+<footer th:replace="~{/user/layout/common/footer :: footerFragment}" id="footer"></footer>
+<div th:replace="~{/user/layout/common/footer :: copyrightFragment}"></div>
+<!--/* 공통 영역 end */-->
+
 </body>
 </html>

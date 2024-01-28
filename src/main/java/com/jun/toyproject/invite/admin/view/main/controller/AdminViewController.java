@@ -11,7 +11,7 @@ public class AdminViewController {
     private final static String VIEW_FOLDER = "admin/";
 
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public String adminHome(){
         return VIEW_FOLDER + "index";
     }

@@ -2,6 +2,15 @@
     <nav th:fragment="naviFragment" id="menu">
         <ul class="links">
             <li><a href="/">Home</a></li>
+            <li><a href="/user/login">로그인</a></li>
+            <li><a href="/user/signup">회원 가입</a></li>
+
+            <!--/* 로그인 후 노출 메뉴 st */-->
+            <li><a href="/mypage/mypage">MyPage</a></li>
+            <li><a href="/mypage/logout">로그아웃</a></li>
+
+
+            <!--/* 테스트 모듈 st */-->
             <li><a href="/example/generic">Generic</a></li>
             <li><a href="/example/elements">Elements</a></li>
         </ul>
