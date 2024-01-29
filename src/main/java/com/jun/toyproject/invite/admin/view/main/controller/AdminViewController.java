@@ -20,4 +20,14 @@ public class AdminViewController {
     public String adminLoginPage(){
         return VIEW_FOLDER + "login";
     }
+
+    @GetMapping("/buttons")
+    public String buttonPage(){
+        return VIEW_FOLDER + "default/buttons";
+    }
+
+    @GetMapping("/cards")
+    public String cardsPage(){
+        return VIEW_FOLDER + "default/cards";
+    }
 }
