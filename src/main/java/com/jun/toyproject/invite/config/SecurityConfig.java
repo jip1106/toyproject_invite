@@ -1,3 +1,4 @@
+ /*
 package com.jun.toyproject.invite.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -43,13 +44,14 @@ public class SecurityConfig {
                         .requestMatchers("/","/admin/").permitAll()
                         .anyRequest().authenticated()
                 )
-                /*.formLogin((form) -> form
-                        .loginPage("/login")
-                        .permitAll()
-                )*/
+                //.formLogin((form) -> form
+                //        .loginPage("/login")
+                //        .permitAll()
+                //)
                 .logout((logout) -> logout.permitAll());
 
         return http.build();
     }
 
 }
+*/

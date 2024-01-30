@@ -22,5 +22,10 @@ public class ViewController {
         return "/example/elements";
     }
 
+    @GetMapping("/user/signup")
+    public String signupPage(){
+        return "/member/signup";
+    }
+
 
 }

@@ -20,8 +20,7 @@ public class LoggingAspect {
     /**
      * @Around에 포인트컷 표현식을 직접 넣을수도 있지만, @Pointcut 애노테이션을 사용해서 별도로 분리 할 수도 있다.
      */
-    @Pointcut("execution(* com.jun.toyproject.invite.admin.view.main.controller.*.*(..))"+
-            "|| execution(* com.jun.toyproject.invite.user.*.controller.*.*(..))")
+    @Pointcut("execution(* com.jun.toyproject.invite.*.*.controller.*.*(..))")
     private void pointcut(){}
 
     /**
@@ -67,8 +66,11 @@ public class LoggingAspect {
     @Aspect
     @Order(1)
     public static class LogAspect{
-        @Pointcut("execution(* com.jun.toyproject.invite.admin.view.main.controller.*.*(..))"+
+        /*@Pointcut("execution(* com.jun.toyproject.invite.admin.view.main.controller.*.*(..))"+
                 "|| execution(* com.jun.toyproject.invite.user.*.controller.*.*(..))")
+
+         */
+        @Pointcut("execution(* com.jun.toyproject.invite.*.*.controller.*.*(..))")
         private void logPointcut(){}
 
         @Around("logPointcut()")

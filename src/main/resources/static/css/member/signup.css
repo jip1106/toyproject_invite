@@ -1,0 +1,3 @@
+.btn_ul_r_div{margin:0 auto;display: grid;}
+.btn_ul_r_div > ul {float:left; text-align:right;}
+.btn_ul_r_div > ul li{display:inline-block;text-align:center;}
