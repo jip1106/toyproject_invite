@@ -26,4 +26,14 @@ public class MemberServiceImpl implements MemberService {
         log.info("saveMember :: {}, {} ",  saveMember.getMemberSeq(), saveMember.getMemberId());
 
     }
+
+    @Override
+    public Long countByMemberId(String memberId) {
+
+        Long count = memberRepository.countByMemberId(memberId);
+
+        return count;
+    }
+
+
 }

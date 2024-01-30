@@ -9,4 +9,5 @@ public interface MemberService {
      */
     void insertMember(RegiMemberDto memberDto);
 
+    Long countByMemberId(String memberId);
 }

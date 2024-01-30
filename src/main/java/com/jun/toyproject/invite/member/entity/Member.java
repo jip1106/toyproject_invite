@@ -5,12 +5,15 @@ import com.jun.toyproject.invite.common.type.LoginType;
 import com.jun.toyproject.invite.common.type.MemberType;
 import com.jun.toyproject.invite.member.dto.RegiMemberDto;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Entity
 @Slf4j
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
 
     @Id @GeneratedValue
@@ -35,6 +38,7 @@ public class Member extends BaseEntity {
     private LoginType loginType;
 
 
+
     public Member(RegiMemberDto memberDto) {
         this.name = memberDto.getName();
         this.memberId = memberDto.getMemberId();
@@ -43,7 +47,6 @@ public class Member extends BaseEntity {
         this.memberType = memberDto.getMemberType();
         this.loginType = memberDto.getLoginType();
     }
-
 
 
 }

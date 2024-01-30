@@ -4,9 +4,8 @@ import com.jun.toyproject.invite.member.dto.RegiMemberDto;
 import com.jun.toyproject.invite.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -24,6 +23,17 @@ public class MemberController {
 
         memberService.insertMember(memberDto);
 
-        return "ok";
+        return "signup";
+    }
+
+    /**
+     * 아이디 중복 확인
+     */
+    @GetMapping("/user/idcheck/{memberId}")
+    public Long countByMemberId(@PathVariable("memberId") String memberId){
+        log.info("memberId :: {} ", memberId);
+        Long count = memberService.countByMemberId(memberId);
+
+        return count;
     }
 }

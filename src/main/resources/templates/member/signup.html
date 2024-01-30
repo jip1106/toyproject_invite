@@ -2,6 +2,7 @@
 <head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
     <title> 회원가입 페이지 </title>
     <link rel="stylesheet" href="/css/member/signup.css">
+    <script type="text/javascript" src="/js/member/signup.js"></script>
 </head>
 
 <body>
@@ -12,6 +13,7 @@
 <!-- Nav -->
 <nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
 <!--/* 공통 영역 end */-->
+
 
 <!-- One -->
 <section id="One" class="wrapper style3">
@@ -35,11 +37,29 @@
                     <input type="hidden" name="loginType" value="SITE"/>
                     <div class="row uniform">
 
+                        <!--/*
                         <div class="12u$ 12u$(xsmall) align-center">
                             <div class="6u$ 12u$(xsmall) mga">
-                                <input type="text" name="memberId" id="memberId" value="" placeholder="Id">
+                                <input type="text" name="memberId" id="memberId" value="" placeholder="Id" class="2u$">
+                                <input type="submit" value="중복확인" class="fit 3u$">
                             </div>
                         </div>
+                        */-->
+
+                        <div class="12u$ 12u$(xsmall) align-center">
+                            <div class="6u 12u$(xsmall) mga">
+                                <div class="row uniform">
+                                    <div class="9u 12u$(small)">
+                                        <input type="text" name="memberId" id="memberId" value="" placeholder="Id" class="2u$">
+                                    </div>
+                                    <div class="3u$ 12u$(small)">
+                                        <input type="button" value="중복확인" class="fit" id="dupChcek">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
 
                         <div class="12u$ 12u$(xsmall) align-center">
                             <div class="6u$ 12u$(xsmall) mga">
@@ -70,6 +90,7 @@
                         </div>
 
                     </div>
+
                 </form>
 
             </div>
@@ -83,6 +104,9 @@
 <footer th:replace="~{/user/layout/common/footer :: footerFragment}" id="footer"></footer>
 <div th:replace="~{/user/layout/common/footer :: copyrightFragment}"></div>
 <!--/* 공통 영역 end */-->
+
+
+
 
 </body>
 </html>
