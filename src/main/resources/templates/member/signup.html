@@ -2,6 +2,7 @@
 <head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
     <title> 회원가입 페이지 </title>
     <link rel="stylesheet" href="/css/member/signup.css">
+    <script type="text/javascript" src="/js/member/api/api_signup.js"></script>
     <script type="text/javascript" src="/js/member/signup.js"></script>
 </head>
 
@@ -51,6 +52,7 @@
                                 <div class="row uniform">
                                     <div class="9u 12u$(small)">
                                         <input type="text" name="memberId" id="memberId" value="" placeholder="Id" class="2u$">
+                                        <p class="none">아이디는 6이상 ~15글자 이하로 입력 해주세요.</p>
                                     </div>
                                     <div class="3u$ 12u$(small)">
                                         <input type="button" value="중복확인" class="fit" id="dupChcek">

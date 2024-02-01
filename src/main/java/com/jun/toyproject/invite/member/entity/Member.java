@@ -3,7 +3,7 @@ package com.jun.toyproject.invite.member.entity;
 import com.jun.toyproject.invite.common.entity.BaseEntity;
 import com.jun.toyproject.invite.common.type.LoginType;
 import com.jun.toyproject.invite.common.type.MemberType;
-import com.jun.toyproject.invite.member.dto.RegiMemberDto;
+import com.jun.toyproject.invite.member.model.dto.RegiMemberDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

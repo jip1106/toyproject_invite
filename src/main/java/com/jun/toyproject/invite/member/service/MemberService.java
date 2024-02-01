@@ -1,6 +1,6 @@
 package com.jun.toyproject.invite.member.service;
 
-import com.jun.toyproject.invite.member.dto.RegiMemberDto;
+import com.jun.toyproject.invite.member.model.dto.RegiMemberDto;
 
 public interface MemberService {
 

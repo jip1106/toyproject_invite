@@ -1,4 +1,4 @@
-package com.jun.toyproject.invite.member.dto;
+package com.jun.toyproject.invite.member.model.dto;
 
 import com.jun.toyproject.invite.common.type.LoginType;
 import com.jun.toyproject.invite.common.type.MemberType;

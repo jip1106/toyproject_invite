@@ -1,10 +1,9 @@
 package com.jun.toyproject.invite.member.controller;
 
-import com.jun.toyproject.invite.member.dto.RegiMemberDto;
+import com.jun.toyproject.invite.member.model.dto.RegiMemberDto;
 import com.jun.toyproject.invite.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
