@@ -3,7 +3,7 @@
 */
 async function dupApiCheckApi(paramMemberId){
     const memberId = paramMemberId;
-    const apiUrl = '/user/idcheck/' + memberId;
+    const apiUrl = '/api/user/idcheck/' + memberId;
 
     return await $.ajax({
         url : apiUrl,

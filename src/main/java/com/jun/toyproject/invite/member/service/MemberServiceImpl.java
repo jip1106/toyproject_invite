@@ -1,6 +1,6 @@
 package com.jun.toyproject.invite.member.service;
 
-import com.jun.toyproject.invite.member.model.dto.RegiMemberDto;
+import com.jun.toyproject.invite.member.model.request.MemberRequest;
 import com.jun.toyproject.invite.member.entity.Member;
 import com.jun.toyproject.invite.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public void insertMember(RegiMemberDto memberDto) {
+    public void insertMember(MemberRequest memberDto) {
 
         log.info("MemberServiceImpl memberDto :: {} ", memberDto);
 

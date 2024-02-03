@@ -1,9 +1,9 @@
 package com.jun.toyproject.invite.member.entity;
 
 import com.jun.toyproject.invite.common.entity.BaseEntity;
-import com.jun.toyproject.invite.common.type.LoginType;
+import com.jun.toyproject.invite.common.type.SignUpType;
 import com.jun.toyproject.invite.common.type.MemberType;
-import com.jun.toyproject.invite.member.model.dto.RegiMemberDto;
+import com.jun.toyproject.invite.member.model.request.MemberRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,17 +35,17 @@ public class Member extends BaseEntity {
     private MemberType memberType;
 
     @Enumerated(EnumType.STRING)
-    private LoginType loginType;
+    private SignUpType loginType;
 
 
 
-    public Member(RegiMemberDto memberDto) {
+    public Member(MemberRequest memberDto) {
         this.name = memberDto.getName();
         this.memberId = memberDto.getMemberId();
         this.password = memberDto.getPassword();
         this.email = memberDto.getEmail();
         this.memberType = memberDto.getMemberType();
-        this.loginType = memberDto.getLoginType();
+        this.loginType = memberDto.getSignUpType();
     }
 
 
