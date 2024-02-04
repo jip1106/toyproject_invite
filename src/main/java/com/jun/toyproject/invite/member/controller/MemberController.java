@@ -18,6 +18,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
+
     /**
      * 사이트 회원 가입
      */
@@ -26,9 +27,6 @@ public class MemberController {
         log.info("MemberController {} " , memberDto);
 
         memberService.insertMember(memberDto);
-
-
-
 
         return "signup";
     }

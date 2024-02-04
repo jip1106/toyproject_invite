@@ -1,6 +1,5 @@
-/**
-    회원 중복 확인
-*/
+
+//회원 id 중복 확인
 async function dupApiCheckApi(paramMemberId){
     const memberId = paramMemberId;
     const apiUrl = '/api/user/idcheck/' + memberId;
@@ -10,3 +9,6 @@ async function dupApiCheckApi(paramMemberId){
         type: 'GET'
     });
 };
+
+
+//회원 가입

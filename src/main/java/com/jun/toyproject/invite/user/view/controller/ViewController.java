@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ViewController {
 
+    /**
+     * sample page st
+     * */
     @GetMapping({"/" , "/index"})
     public String goMainPage(){
         return "main";
@@ -22,10 +25,20 @@ public class ViewController {
         return "/example/elements";
     }
 
+    /**
+     * sample page end
+     * */
+
+
+    /**
+     * 회원가입 form
+     * @return
+     */
     @GetMapping("/user/signup")
     public String signupPage(){
         return "/member/signup";
     }
+
 
 
 }

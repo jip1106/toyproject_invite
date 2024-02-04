@@ -17,10 +17,11 @@ public class SwaggerConfig {
     @Bean
     public GroupedOpenApi customApi() {
 
+        String apiPaths[] = {"/api/**"};
 
         return GroupedOpenApi.builder()
                 .group("초대장 API V1")
-                .pathsToMatch("/api/**")
+                .pathsToMatch(apiPaths)
                 .build();
     }
 }

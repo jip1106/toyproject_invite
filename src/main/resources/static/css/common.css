@@ -3,7 +3,7 @@
 .mga{margin:auto}
 .tred{color:red;}
 .tgreen{color:green;}
-.alarm_r{float: right;margin-top: 10px; color:red; font-size:11px;}
-.alarm_g{float: right;margin-top: 10px; color:green; font-size:11px;}
+.alarm_r{float: right;margin: 1rem 0 0 0; color:red; font-size:11px;}
+.alarm_g{float: right;margin: 1rem 0 0 0; color:green; font-size:11px;}
 .none{display:none;}
 .show{display:block;}
