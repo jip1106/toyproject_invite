@@ -32,8 +32,4 @@ public class MemberRequest {
 
 
 
-    public Member transDtoToEntity(MemberRequest memberDto){
-        return new Member(memberDto);
-    }
-
 }

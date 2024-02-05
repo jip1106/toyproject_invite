@@ -29,3 +29,21 @@ const isNull = (value) => {
     return !isNotNull(value);
 }
 
+
+//로그아웃
+const doLogout = () => {
+    const apiUrl = '/api/logout';
+    $.ajax({
+        url : apiUrl,
+        type : 'POST'
+    })
+    .then(
+        (res) => {
+            location.href="/";
+        },
+        (err) => {
+            console.log(err);
+        }
+    );
+
+};

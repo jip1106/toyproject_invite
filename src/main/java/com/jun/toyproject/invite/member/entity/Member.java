@@ -35,7 +35,7 @@ public class Member extends BaseEntity {
     private MemberType memberType;
 
     @Enumerated(EnumType.STRING)
-    private SignUpType loginType;
+    private SignUpType signUpType;
 
 
 
@@ -45,7 +45,41 @@ public class Member extends BaseEntity {
         this.password = memberDto.getPassword();
         this.email = memberDto.getEmail();
         this.memberType = memberDto.getMemberType();
-        this.loginType = memberDto.getSignUpType();
+        this.signUpType = memberDto.getSignUpType();
+    }
+
+    public Member(Builder builder){
+        this.name = builder.name;
+        this.memberId = builder.memberId;
+        this.password = builder.password;
+        this.email = builder.email;
+        this.memberType = builder.memberType;
+        this.signUpType = builder.signUpType;
+    }
+
+
+    public static class Builder{
+        private final String name;
+        private final String memberId;
+        private final String password;
+        private final String email;
+        private final MemberType memberType;
+        private final SignUpType signUpType;
+
+        public Builder(MemberRequest memberRequest){
+            this.name = memberRequest.getName();
+            this.memberId = memberRequest.getMemberId();
+            this.password = memberRequest.getPassword();
+            this.email = memberRequest.getPassword();
+            this.memberType = memberRequest.getMemberType();
+            this.signUpType = memberRequest.getSignUpType();
+        }
+
+        public Member build(){
+            return new Member(this);
+        }
+
+
     }
 
 

@@ -32,12 +32,26 @@ public class ViewController {
 
     /**
      * 회원가입 form
-     * @return
      */
     @GetMapping("/user/signup")
     public String signupPage(){
         return "/member/signup";
     }
+    
+    /**
+     * 회원가입 결과 form
+     */
+    @GetMapping("/user/signup/result")
+    public String signUpResultPage(){
+        return "/member/result";
+    }
+
+
+    /**
+     * 로그인 페이지
+     */
+    @GetMapping("/user/login")
+    public String loginPage(){ return "/member/login";}
 
 
 

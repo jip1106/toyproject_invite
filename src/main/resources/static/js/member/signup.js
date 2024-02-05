@@ -2,7 +2,6 @@ let boolDupId = false;
 let boolIdLength = false;
 let boolPassword = false;
 
-
 $(function(){
     //아이디 중복체크
     $("#memberId").on("keyup",function(){
@@ -22,13 +21,11 @@ $(function(){
                     $(this).val(memberId.substring(0,15));
                     changeBoolIdLength(true);
                     getDupCheck($(this).val(),alarmTag);
-
                 }else{
                     changeBoolIdLength(false);
                 }
-
-
             }else{
+
                 getDupCheck(memberId,alarmTag);
             }
         }
@@ -43,15 +40,18 @@ $(function(){
         const compareElement = (tagId === 'password') ? $("#passwordConfirm") :  $("#password");
         let compareVal = compareElement.val();
 
-        if(inputVal !== compareVal){
-            element.css("border","2px solid rgba(255, 0, 0, 0.5)");
-            compareElement.css("border","1px solid rgba(255, 0, 0, 0.5)");
-            changeBoolPwd(false);
-        }else{
-            element.css("border","2px solid rgba(0, 0, 0, 0.15)");
-            compareElement.css("border","1px solid rgba(0, 0, 0, 0.15)");
-            changeBoolPwd(true);
+        if(isNotNull(compareVal) ){
+            if(inputVal !== compareVal){
+                element.css("border","1px solid rgba(255, 0, 0, 0.5)");
+                //compareElement.css("border","1px solid rgba(255, 0, 0, 0.5)");
+                changeBoolPwd(false);
+            }else{
+                element.css("border","1px solid rgba(0, 0, 0, 0.15)");
+                compareElement.css("border","1px solid rgba(0, 0, 0, 0.15)");
+                changeBoolPwd(true);
+            }
         }
+
     });
 
     //회원 가입 버튼 클릭
@@ -62,15 +62,8 @@ $(function(){
     });
 });
 
-//회원 가입
-async function signup(){
-    const memberData = getFrmMemberData();
 
-    console.log(memberData);
-
-}
-
-/* 회원가입 정보 반환 */
+/* 회원가입 요청 정보(form) */
 function getFrmMemberData(){
     const frm = document.querySelector('[name="frm"]');
 
@@ -132,7 +125,7 @@ function validCheck(){
 async function getDupCheck(paramMemberId,obj){
 
     changeBoolIdLength(true);
-    const count = await dupApiCheckApi(paramMemberId);
+    const count = await dupCheck(paramMemberId);
 
     if(count == 0){
         obj.removeClass("alarm_r");
@@ -145,11 +138,37 @@ async function getDupCheck(paramMemberId,obj){
         obj.text("중복된 아이디 입니다.");
         changeBoolId(false, "");
     }
-
 }
 
-//체크값 변경
+//회원 가입 버튼 클릭
+async function signup(){
+    const memberData = getFrmMemberData();
 
+    addMember(memberData).then(
+        (response) => {
+            //회원가입 성공
+            console.log(response);
+            const rtnUrl = new URL('/user/signup/result',location);
+
+            rtnUrl.searchParams.append('seq', response.memberSeq);
+            rtnUrl.searchParams.append('id', response.memberId);
+
+            location.href = rtnUrl.href;
+        },
+        (errorResponse) => {
+            //회원가입 실패
+            console.log(response);
+            const rtnUrl = new URL('/user/signup/result',location);
+            rtnUrl.searchParams.append('message', errorResponse.message);
+
+            location.href = rtnUrl.href;
+        }
+    );
+}
+
+
+
+//체크값 변경
 const changeBoolId = (value) =>{
     if(isNotNull(value)){
         boolDupId = value;

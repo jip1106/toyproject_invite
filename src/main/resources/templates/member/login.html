@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
+    <title> 로그인 페이지 </title>
+    <link rel="stylesheet" href="/css/member/signup.css">
+    <script type="text/javascript" src="/js/member/api/api_signup.js"></script>
+    <script type="text/javascript" src="/js/member/login.js"></script>
+
+</head>
+
+<body>
+
+<!--/* 공통 영역 st */-->
+<!-- Header -->
+<header th:replace="~{/user/layout/common/header :: headerFragment}"></header>
+<!-- Nav -->
+<nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
+<!--/* 공통 영역 end */-->
+
+
+<!-- One -->
+<section id="One" class="wrapper style3">
+    <div class="inner">
+        <header class="align-center">
+
+        </header>
+    </div>
+</section>
+
+<section id="two" class="wrapper style2">
+    <div class="inner">
+        <div class="box">
+            <div class="content">
+                <header class="align-center"><p>로그인 페이지</p>
+                    <h2>로그인</h2>
+                </header>
+
+                <form method="post" action="" name="frm">
+                    <div class="row uniform">
+                        <div class="12u$ 12u$(xsmall) align-center">
+                            <div class="6u 12u$(xsmall) mga">
+                                <input type="text" name="memberId" id="memberId" value="" placeholder="Id" class="2u$">
+                            </div>
+                        </div>
+
+
+                        <div class="12u$ 12u$(xsmall) align-center">
+                            <div class="6u$ 12u$(xsmall) mga">
+                                <input type="password" name="password" id="password" value="" placeholder="password">
+                            </div>
+                        </div>
+
+
+                        <!-- Break -->
+                        <div class="12u$ 12u$(xsmall)">
+                            <div class="6u$ 12u$(xsmall) btn_ul_r_div" >
+                                <ul class="actions btn_ul_r_ul" >
+                                    <li><input type="button" value="로그인" class="submit_btn"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--/* 공통 영역 st */-->
+<footer th:replace="~{/user/layout/common/footer :: footerFragment}" id="footer"></footer>
+<div th:replace="~{/user/layout/common/footer :: copyrightFragment}"></div>
+<!--/* 공통 영역 end */-->
+
+
+
+
+</body>
+</html>
