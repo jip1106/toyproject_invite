@@ -6,6 +6,11 @@ $(function(){
         }
     });
 
+    //회원가입 페이지로 이동
+    $("ul.actions > li > input.signup").on("click", function(){
+        location.href = "/user/signup";
+    });
+
 });
 
 
@@ -39,16 +44,12 @@ async function login(){
     doLogin(loginParam).then(
         (res) => {
             console.log(res);
+            //로그인 완료 후 메인페이지로 이동
             location.href = "/";
         },
         (err) => {
             console.log(err);
-            switch(err.status){
-            case 401 : alert(err.responseText); break;
-            case 500 : alert(err.responseJSON.message);break;
-            }
-
-
+            alert(err.responseText);
         }
     );
 

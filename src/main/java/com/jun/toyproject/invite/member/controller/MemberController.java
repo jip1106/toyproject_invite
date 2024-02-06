@@ -1,28 +1,24 @@
 package com.jun.toyproject.invite.member.controller;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jun.toyproject.invite.member.entity.Member;
+;
+import com.jun.toyproject.invite.member.model.dto.MemberDetailDto;
 import com.jun.toyproject.invite.member.model.request.LoginRequest;
 import com.jun.toyproject.invite.member.model.request.MemberRequest;
-import com.jun.toyproject.invite.member.model.response.AuthenticationResultResponse;
 import com.jun.toyproject.invite.member.model.response.MemberDetailResponse;
 import com.jun.toyproject.invite.member.model.response.MemberResponse;
 import com.jun.toyproject.invite.member.service.MemberService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+
 @Slf4j
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 @Tag(name = "members", description = "회원 관련 API")
@@ -61,7 +57,9 @@ public class MemberController {
 
     }
 
-
+    /**
+     * 로그인
+     * */
     @PostMapping("/user/login")
     @Operation(summary = "로그인", description = "로그인을 진행한다",
             responses = {
@@ -70,35 +68,36 @@ public class MemberController {
                 @ApiResponse(description = "Authentication Failure" , responseCode = "401")
             }
     )
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest , HttpSession session){
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest , HttpSession session){
         String memberId = loginRequest.getMemberId();
         String password = loginRequest.getPassword();
 
-        AuthenticationResultResponse loginResult =
-                memberService.isMember(memberId, password);
 
-        if(loginResult.isSuccess() ){
-            MemberDetailResponse memberInfo = loginResult.getMemberDetailResponse();
+        /* 예외 처리 @ExceptionHandler */
+        MemberDetailDto findMember = memberService.findByMemberId(memberId);
+
+        //비밀번호 일치여부 확인
+        boolean loginResult = memberService.isMember(password, findMember);
+
+
+
+        if(loginResult){
+            MemberDetailResponse memberInfo =
+                    memberService.getMemberInfo(findMember.getMemberSeq(), findMember.getMemberId());
 
             session.setAttribute("sMemberName", memberInfo.getName());
             session.setAttribute("sMemberId", memberInfo.getMemberId());
 
             return ResponseEntity.status(HttpStatus.OK).body("로그인에 성공했습니다.");
         }else{
-            MemberDetailResponse memberInfo = memberService.getMemberInfo(memberId);
-            if(memberInfo.getMemberId() != null){
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다.");
-            }else{
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("회원 정보가 없습니다.");
-            }
-
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다.");
         }
     }
 
 
     @PostMapping("/logout")
     @Operation(summary = "로그아웃", description = "로그아웃")
-    public ResponseEntity<?> logOut(HttpSession session){
+    public ResponseEntity<String> logOut(HttpSession session){
         session.invalidate();
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃");
     }

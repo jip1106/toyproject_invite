@@ -25,7 +25,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String memberId;
 
-    @Column(nullable = false, length = 32)
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = true)
@@ -70,7 +70,7 @@ public class Member extends BaseEntity {
             this.name = memberRequest.getName();
             this.memberId = memberRequest.getMemberId();
             this.password = memberRequest.getPassword();
-            this.email = memberRequest.getPassword();
+            this.email = memberRequest.getEmail();
             this.memberType = memberRequest.getMemberType();
             this.signUpType = memberRequest.getSignUpType();
         }

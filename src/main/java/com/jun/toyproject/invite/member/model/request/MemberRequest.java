@@ -19,6 +19,7 @@ public class MemberRequest {
     private String memberId;
 
     @Schema(description = "비밀번호")
+    @Setter //암호화
     private String password;
 
     @Schema(description = "이메일")

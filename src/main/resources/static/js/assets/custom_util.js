@@ -45,5 +45,15 @@ const doLogout = () => {
             console.log(err);
         }
     );
-
 };
+
+//숫자,영어만 입력
+const onlyNumAndAlphabet = (value) => {
+    const regex = /^[a-zA-Z0-9]+$/;
+    return regex.test(value);
+}
+//숫자만 입력
+const onlyNum= (value) => {
+    const regex = /^[0-9]+$/;
+    return regex.test(value);
+}

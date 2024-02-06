@@ -9,24 +9,26 @@ $(function(){
         const alarmTag = $(this).siblings("p");
 
         if(memberId != ""){
+            if(onlyNumAndAlphabet(memberId)){
+                if(memberId.length <6 || memberId.length >15){
+                    alarmTag.removeClass("none");
+                    alarmTag.addClass("show");
+                    alarmTag.removeClass("alarm_g");
+                    alarmTag.addClass("alarm_r");
+                    alarmTag.text("아이디는 6이상 ~15글자 이하로 입력 해주세요.");
 
-            if(memberId.length <6 || memberId.length >15){
-                alarmTag.removeClass("none");
-                alarmTag.addClass("show");
-                alarmTag.removeClass("alarm_g");
-                alarmTag.addClass("alarm_r");
-                alarmTag.text("아이디는 6이상 ~15글자 이하로 입력 해주세요.");
-
-                if(memberId.length > 15){
-                    $(this).val(memberId.substring(0,15));
-                    changeBoolIdLength(true);
-                    getDupCheck($(this).val(),alarmTag);
+                    if(memberId.length > 15){
+                        $(this).val(memberId.substring(0,15));
+                        changeBoolIdLength(true);
+                        getDupCheck($(this).val(),alarmTag);
+                    }else{
+                        changeBoolIdLength(false);
+                    }
                 }else{
-                    changeBoolIdLength(false);
+                    getDupCheck(memberId,alarmTag);
                 }
             }else{
-
-                getDupCheck(memberId,alarmTag);
+                $(this).val(memberId.substring(0,memberId.length-1));
             }
         }
     });
@@ -59,6 +61,12 @@ $(function(){
         if(validCheck()){
             signup();
         }
+    });
+
+
+    //로그인 페이지로 이동
+    $(".actions > li > input.login").on("click", function(){
+        location.href = "/user/login";
     });
 });
 
@@ -127,7 +135,13 @@ async function getDupCheck(paramMemberId,obj){
     changeBoolIdLength(true);
     const count = await dupCheck(paramMemberId);
 
-    if(count == 0){
+    console.log("호출" , count);
+
+    if(obj.hasClass("none")){
+        obj.removeClass("none");
+    }
+
+    if(count === 0){
         obj.removeClass("alarm_r");
         obj.addClass("alarm_g");
         obj.text("사용가능한 아이디 입니다.");
