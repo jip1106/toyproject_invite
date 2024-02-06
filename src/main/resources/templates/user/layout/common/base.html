@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="common_header(title,script,links)">
-    <title th:replace="${title}">Hielo by TEMPLATED</title>
-    <title th:if="${title}" th:text="${title}">title를 입력하세요.</title>
+    <title th:replace="${title}">대체될 Title</title>
+
     <!-- 공통 -->
     <meta charset="utf-8">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -16,9 +16,7 @@
     <script type="text/javascript" src="/js/assets/custom_util.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
-
     <!--/* 추가 스크립트 */-->
-
     <!--/* 아래처럼 작성하는경우
         Error resolving fragment: "${script}": template or fragment could not be resolved 발생
     */-->

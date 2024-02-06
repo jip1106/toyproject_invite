@@ -6,6 +6,12 @@
     <script type="text/javascript" src="/js/member/signup.js"></script>
 </head>
 
+
+<script>
+    $(function(){
+        console.log("이페이지에서만 따로 쓰고 싶다...");
+    });
+</script>
 <body>
 
 <!--/* 공통 영역 st */-->
@@ -13,17 +19,8 @@
 <header th:replace="~{/user/layout/common/header :: headerFragment}"></header>
 <!-- Nav -->
 <nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
+<section th:replace="~{/user/layout/common/navi :: sectionFragment}"></section>
 <!--/* 공통 영역 end */-->
-
-
-<!-- One -->
-<section id="One" class="wrapper style3">
-    <div class="inner">
-        <header class="align-center">
-
-        </header>
-    </div>
-</section>
 
 <section id="two" class="wrapper style2">
     <div class="inner">

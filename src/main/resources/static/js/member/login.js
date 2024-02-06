@@ -8,7 +8,7 @@ $(function(){
 
     //회원가입 페이지로 이동
     $("ul.actions > li > input.signup").on("click", function(){
-        location.href = "/user/signup";
+        location.href = "/member/signup";
     });
 
 });

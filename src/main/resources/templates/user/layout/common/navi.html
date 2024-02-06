@@ -2,11 +2,11 @@
     <nav th:fragment="naviFragment" id="menu">
         <ul class="links">
             <li><a href="/">Home</a></li>
-            <li th:if="${session.sMemberId == null}"><a href="/user/login">로그인</a></li>
-            <li th:if="${session.sMemberId == null}"><a href="/user/signup">회원 가입</a></li>
+            <li th:if="${session.sMemberId == null}"><a href="/member/login">로그인</a></li>
+            <li th:if="${session.sMemberId == null}"><a href="/member/signup">회원 가입</a></li>
 
             <!--/* 로그인 후 노출 메뉴 st */-->
-            <li th:if="${session.sMemberId != null}"><a href="/mypage/mypage">MyPage</a></li>
+            <li th:if="${session.sMemberId != null}"><a href="/mypage">MyPage</a></li>
             <li th:if="${session.sMemberId != null}"><a th:href="'javascript:doLogout();'">로그아웃</a></li>
 
 
@@ -15,4 +15,14 @@
             <li><a href="/example/elements">Elements</a></li>
         </ul>
     </nav>
+
+    <!-- One -->
+    <section th:fragment="sectionFragment" id="One" class="wrapper style3">
+        <div class="inner">
+            <header class="align-center">
+
+            </header>
+        </div>
+    </section>
+
 </html>

@@ -1,8 +1,7 @@
-package com.jun.toyproject.invite.user.view.controller;
+package com.jun.toyproject.invite.view.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ViewController {
@@ -33,7 +32,7 @@ public class ViewController {
     /**
      * 회원가입 form
      */
-    @GetMapping("/user/signup")
+    @GetMapping("/member/signup")
     public String signupPage(){
         return "/member/signup";
     }
@@ -41,7 +40,7 @@ public class ViewController {
     /**
      * 회원가입 결과 form
      */
-    @GetMapping("/user/signup/result")
+    @GetMapping("/member/signup/result")
     public String signUpResultPage(){
         return "/member/result";
     }
@@ -50,8 +49,15 @@ public class ViewController {
     /**
      * 로그인 페이지
      */
-    @GetMapping("/user/login")
+    @GetMapping("/member/login")
     public String loginPage(){ return "/member/login";}
+
+
+    /**
+     * 마이페이지
+     */
+    @GetMapping("/mypage")
+    public String myPage(){return "/mypage/index";}
 
 
 

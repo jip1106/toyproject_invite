@@ -66,7 +66,7 @@ $(function(){
 
     //로그인 페이지로 이동
     $(".actions > li > input.login").on("click", function(){
-        location.href = "/user/login";
+        location.href = "/member/login";
     });
 });
 
@@ -162,7 +162,7 @@ async function signup(){
         (response) => {
             //회원가입 성공
             console.log(response);
-            const rtnUrl = new URL('/user/signup/result',location);
+            const rtnUrl = new URL('/member/signup/result',location);
 
             rtnUrl.searchParams.append('seq', response.memberSeq);
             rtnUrl.searchParams.append('id', response.memberId);
@@ -172,7 +172,7 @@ async function signup(){
         (errorResponse) => {
             //회원가입 실패
             console.log(response);
-            const rtnUrl = new URL('/user/signup/result',location);
+            const rtnUrl = new URL('/member/signup/result',location);
             rtnUrl.searchParams.append('message', errorResponse.message);
 
             location.href = rtnUrl.href;

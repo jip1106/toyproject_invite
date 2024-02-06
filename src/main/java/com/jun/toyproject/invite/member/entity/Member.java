@@ -6,6 +6,7 @@ import com.jun.toyproject.invite.common.type.MemberType;
 import com.jun.toyproject.invite.member.model.request.MemberRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
