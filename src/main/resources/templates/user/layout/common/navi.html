@@ -6,6 +6,7 @@
             <li th:if="${session.sMemberId == null}"><a href="/member/signup">회원 가입</a></li>
 
             <!--/* 로그인 후 노출 메뉴 st */-->
+            <li th:if="${session.sMemberId != null}"><a href="/create">제작하기</a></li>
             <li th:if="${session.sMemberId != null}"><a href="/mypage">MyPage</a></li>
             <li th:if="${session.sMemberId != null}"><a th:href="'javascript:doLogout();'">로그아웃</a></li>
 

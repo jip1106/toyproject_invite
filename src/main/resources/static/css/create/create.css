@@ -1,0 +1,20 @@
+/* 기본 옵션 영역*/
+.option{height:400px; border:1px solid #eaeaea; overflow-y:scroll;}
+.option > ul{height:inherit; margin: 0 0 0 0; padding: 0 0 0 0;}
+.option > ul > li{
+    list-style: none;
+    height: 55px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+    padding: 1rem 1rem 0 0;
+    font-size: 0.7rem;
+}
+
+/* 스크롤바 st */
+.option::-webkit-scrollbar {width: 8px;}   /*스크롤바의 너비*/
+.option::-webkit-scrollbar-thumb {height:30px; background-color: #b7b6b6;border-radius: 10px;background-clip: padding-box;border: 2px solid transparent;} /*스크롤바의 색상*/
+.option::-webkit-scrollbar-track {background-color: #eaeaea; }/*스크롤바 트랙 색상*/
+/* 스크롤바 end */
+
+
+

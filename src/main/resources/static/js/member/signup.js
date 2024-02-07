@@ -79,7 +79,10 @@ function getFrmMemberData(){
         memberId : frm.memberId.value,
         password : frm.password.value,
         name : frm.name.value,
-        email : frm.email.value
+        email : frm.email.value,
+        memberType : frm.memberType.value,
+        signupType : frm.signupType.value,
+
     };
 
     return rtnData;

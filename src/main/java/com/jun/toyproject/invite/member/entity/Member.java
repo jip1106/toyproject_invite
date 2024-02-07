@@ -1,12 +1,11 @@
 package com.jun.toyproject.invite.member.entity;
 
 import com.jun.toyproject.invite.common.entity.BaseEntity;
-import com.jun.toyproject.invite.common.type.SignUpType;
+import com.jun.toyproject.invite.common.type.SignupType;
 import com.jun.toyproject.invite.common.type.MemberType;
 import com.jun.toyproject.invite.member.model.request.MemberRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class Member extends BaseEntity {
     private MemberType memberType;
 
     @Enumerated(EnumType.STRING)
-    private SignUpType signUpType;
+    private SignupType signupType;
 
 
 
@@ -46,7 +45,7 @@ public class Member extends BaseEntity {
         this.password = memberDto.getPassword();
         this.email = memberDto.getEmail();
         this.memberType = memberDto.getMemberType();
-        this.signUpType = memberDto.getSignUpType();
+        this.signupType = memberDto.getSignupType();
     }
 
     public Member(Builder builder){
@@ -55,7 +54,7 @@ public class Member extends BaseEntity {
         this.password = builder.password;
         this.email = builder.email;
         this.memberType = builder.memberType;
-        this.signUpType = builder.signUpType;
+        this.signupType = builder.signupType;
     }
 
 
@@ -65,7 +64,7 @@ public class Member extends BaseEntity {
         private final String password;
         private final String email;
         private final MemberType memberType;
-        private final SignUpType signUpType;
+        private final SignupType signupType;
 
         public Builder(MemberRequest memberRequest){
             this.name = memberRequest.getName();
@@ -73,7 +72,7 @@ public class Member extends BaseEntity {
             this.password = memberRequest.getPassword();
             this.email = memberRequest.getEmail();
             this.memberType = memberRequest.getMemberType();
-            this.signUpType = memberRequest.getSignUpType();
+            this.signupType = memberRequest.getSignupType();
         }
 
         public Member build(){

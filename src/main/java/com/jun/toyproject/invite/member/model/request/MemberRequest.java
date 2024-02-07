@@ -1,8 +1,7 @@
 package com.jun.toyproject.invite.member.model.request;
 
 import com.jun.toyproject.invite.common.type.MemberType;
-import com.jun.toyproject.invite.common.type.SignUpType;
-import com.jun.toyproject.invite.member.entity.Member;
+import com.jun.toyproject.invite.common.type.SignupType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -29,7 +28,7 @@ public class MemberRequest {
     private MemberType memberType;
 
     @Schema(description = "회원 가입 방식")
-    private SignUpType signUpType;
+    private SignupType signupType;
 
 
 

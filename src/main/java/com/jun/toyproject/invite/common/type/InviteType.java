@@ -1,8 +1,5 @@
 package com.jun.toyproject.invite.common.type;
 
-import lombok.Getter;
-
-@Getter
 public enum InviteType {
 
     DEFAULT("일반초대장"),
@@ -14,4 +11,7 @@ public enum InviteType {
         this.name = name;
     }
 
+    public String getName(){
+        return name;
+    }
 }

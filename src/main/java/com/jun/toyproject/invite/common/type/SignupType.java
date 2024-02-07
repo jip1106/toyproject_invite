@@ -1,6 +1,6 @@
 package com.jun.toyproject.invite.common.type;
 
-public enum SignUpType {
+public enum SignupType {
 
     SITE("사이트 가입"),
     NAVER("네이버 연동"),
@@ -9,7 +9,7 @@ public enum SignUpType {
 
     private final String message;
 
-    SignUpType(String message){
+    SignupType(String message){
         this.message = message;
     }
 }

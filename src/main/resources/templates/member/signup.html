@@ -2,16 +2,10 @@
 <head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
     <title> 회원가입 페이지 </title>
     <link rel="stylesheet" href="/css/member/signup.css">
-    <script type="text/javascript" src="/js/member/api/api_signup.js"></script>
+    <script type="text/javascript" src="/js/api/api_signup.js"></script>
     <script type="text/javascript" src="/js/member/signup.js"></script>
 </head>
 
-
-<script>
-    $(function(){
-        console.log("이페이지에서만 따로 쓰고 싶다...");
-    });
-</script>
 <body>
 
 <!--/* 공통 영역 st */-->
@@ -32,7 +26,7 @@
 
                 <form method="post" action="" name="frm">
                     <input type="hidden" name="memberType" value="USER"/>
-                    <input type="hidden" name="signUpType" value="SITE"/>
+                    <input type="hidden" name="signupType" value="SITE"/>
                     <div class="row uniform">
 
                         <!--/*

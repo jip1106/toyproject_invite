@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
+    <title> 초대장 만들기 </title>
+
+    <link rel="stylesheet" href="/css/create/create.css">
+
+    <script type="text/javascript" src="/js/sortablejs/Sortable.min.js"></script>
+    <script type="text/javascript" src="/js/api/api_create.js"></script>
+    <script type="text/javascript" src="/js/create/create.js"></script>
+</head>
+
+<body>
+
+<!--/* 공통 영역 st */-->
+<!-- Header -->
+<header th:replace="~{/user/layout/common/header :: headerFragment}"></header>
+<!-- Nav -->
+<nav th:replace="~{/user/layout/common/navi :: naviFragment}"></nav>
+
+<section th:replace="~{/user/layout/common/navi :: sectionFragment}"></section>
+<!--/* 공통 영역 end */-->
+
+
+<div id="main" class="container">
+    <!--/* 왼쪽 영역 */-->
+
+        <div class="6u 12u$(medium) left">
+            <div class="row">
+
+                <div th:each="type, iterStat : ${inviteTypes}" class="4u 12u$(small)">
+                    <input type="radio" name="inviteType" th:value="${type}" th:id="'type_' + ${type.name()}"
+                           th:checked="${iterStat.index == 0}"
+                    />
+                    <label th:for="'type_' + ${type.name()}" th:text="${type.getName()}">ENUM 이름</label>
+                </div>
+
+
+                <div class="6u 12u${small}">
+                    <div class="option">
+                        <ul id="baseItem">
+                            <li>초대 문구</li>
+                            <li>사진</li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="6u 12u${small}">
+                    <div class="option">
+                        <ul id="selectedItem">
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    <!--/* 오른쪽 영역 */-->
+    <div class="6u 12u$(medium) right">
+
+
+
+    </div>
+
+</div>
+
+
+
+<!--/* 공통 영역 st */-->
+<footer th:replace="~{/user/layout/common/footer :: footerFragment}" id="footer"></footer>
+<div th:replace="~{/user/layout/common/footer :: copyrightFragment}"></div>
+<!--/* 공통 영역 end */-->
+
+</body>
+</html>
