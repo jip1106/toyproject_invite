@@ -10,6 +10,9 @@
     font-size: 0.7rem;
 }
 
+/* 초기화 버튼 */
+.ul_btn{text-align:right;}
+
 /* 스크롤바 st */
 .option::-webkit-scrollbar {width: 8px;}   /*스크롤바의 너비*/
 .option::-webkit-scrollbar-thumb {height:30px; background-color: #b7b6b6;border-radius: 10px;background-clip: padding-box;border: 2px solid transparent;} /*스크롤바의 색상*/

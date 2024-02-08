@@ -22,6 +22,9 @@ public class BaseOption extends BaseEntity {
 
     private String name;
 
+    @Column(name = "dup_check", columnDefinition = "중복 가능 옵션")
+    private boolean dupCheck;
+
     @Enumerated(EnumType.STRING)
     private InviteType inviteType;
 
