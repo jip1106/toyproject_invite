@@ -28,13 +28,17 @@ public class BaseOptionResponse {
     @Schema(description = "순서")
     private Integer priority;
 
+    @Schema(description = "중복 가능 옵션")
+    private boolean dupCheck;
+
     public static BaseOptionResponse from(BaseOption baseOption){
         return new BaseOptionResponse(
                 baseOption.getBoSeq(),
                 baseOption.getCode(),
                 baseOption.getName(),
                 baseOption.getInviteType(),
-                baseOption.getPriority()
+                baseOption.getPriority(),
+                baseOption.isDupCheck()
         );
     }
 }

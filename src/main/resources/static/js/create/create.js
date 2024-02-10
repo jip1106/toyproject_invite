@@ -24,6 +24,8 @@ $(function(){
 
 function init(){
     setBaseOptions("DEFAULT");  //옵션 세팅
+
+
     sortInit(); //Sortable.js 동작
 }
 
@@ -39,7 +41,9 @@ async function setBaseOptions(inviteType){
                 res.forEach( (baseOption) => {
                     addHtml +=
                         `
-                            <li data-id="${baseOption.code}">${baseOption.name}</li>
+                            <li class="sortable-item" data-id="${baseOption.code}" data-dup="${baseOption.dupCheck}">
+                                ${baseOption.name}
+                            </li>
                         `;
                 })
 
@@ -58,7 +62,7 @@ async function setBaseOptions(inviteType){
 
 
 function sortInit(){
-    //기본 제공 옵션들
+    //BASE OPTION
     let el = document.getElementById('baseItem');
 
     new Sortable(el,{
@@ -70,20 +74,30 @@ function sortInit(){
         animation: 150, // 드래그 애니메이션 지속 시간
         multiDrag: true, // Enable multi-drag
         selectedClass: 'sortable-selected', // The class applied to the selected items
+        onEnd: function(evt){
+
+            //console.log(movedItems);
+            if($(".sortable-item").hasClass('sortable-selected')){
+                $(".sortable-item").removeClass('sortable-selected');
+            }
+            console.log("================================");
+
+            let movedItems = [];
+            el.querySelectorAll("li").forEach((item,index) => {
+                console.log(item);
+                movedItems.push(item);
+            });
+
+            console.log(movedItems);
 
 
-        /*
-        onSelect: function(evt){
-            console.log(evt.item);
-        },
 
-        onDeselect: function(evt){
-            console.log(evt.item);
         }
-    */
+
+
     });
 
-    //선택된 항목들
+    //SELECTED OPTION
     el = document.getElementById('selectedItem');
 
     new Sortable(el,{
@@ -93,7 +107,6 @@ function sortInit(){
         sort: true, // 선택한 옵션은 순서 조정 가능하도록
         onMove: function (evt) {
             if (evt.to.getAttribute("id") === 'baseItem') { // baseItem 영역으로 이동 못하도록
-                evt.returnToSender = false;
                 return false;
             }
         },
@@ -102,21 +115,20 @@ function sortInit(){
         selectedClass: 'sortable-selected', // The class applied to the selected items
 
         onSelect: function(evt){
-
             curSelectedOptions.push(evt.item.getAttribute("data-id"));
+
+            //console.log(curSelectedOptions);
 
         },
 
         onDeselect: function(evt){
-            console.log(evt.item);
-            console.log(evt.item.getAttribute("data-id"));
+
 
             curSelectedOptions =
                 curSelectedOptions.filter((data) => evt.item.getAttribute("data-id") != data);
 
-            console.log(curSelectedOptions);
-        }
-
+            //console.log(curSelectedOptions);
+        },
     });
 
 }

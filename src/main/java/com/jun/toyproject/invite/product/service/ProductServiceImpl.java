@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -20,7 +21,6 @@ import java.util.stream.Stream;
 @Slf4j
 public class ProductServiceImpl implements ProductService{
 
-    //private final ProductRepository productRepository;
     private final BaseOptionRepository baseOptionRepository;
 
     @Override
@@ -28,11 +28,16 @@ public class ProductServiceImpl implements ProductService{
 
         List<BaseOption> baseOptions = baseOptionRepository.findByInviteTypeOrderByPriorityAsc(inviteType);
 
-        List<BaseOptionResponse> rtnList = new ArrayList<>();
+        /*
+            List<BaseOptionResponse> rtnList = new ArrayList<>();
+            for (BaseOption baseOption : baseOptions) {
+                rtnList.add(BaseOptionResponse.from(baseOption));
+            }
+         */
 
-        for (BaseOption baseOption : baseOptions) {
-            rtnList.add(BaseOptionResponse.from(baseOption));
-        }
+        List<BaseOptionResponse> rtnList = baseOptions.stream()
+                .map(BaseOptionResponse::from)
+                .collect(Collectors.toList());
 
         if(rtnList.isEmpty()){
             throw new InviteException("옵션정보가 등록되어 있지 않습니다.", HttpStatus.NOT_FOUND);
