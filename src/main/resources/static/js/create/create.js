@@ -1,4 +1,5 @@
 let curSelectedOptions = [];
+let deletedOptions = [];
 
 $(function(){
     init();
@@ -11,23 +12,54 @@ $(function(){
 
     //선택한 옵션 삭제
     $(".ul_btn > li > a.sel_del").on("click",function(){
-        console.log($(this));
+        //console.log($(this));
+        console.log("click a.sel_del 2");
+        console.log(deletedOptions);
     });
 
     //전체 선택한 옵션 삭제
     $(".ul_btn > li > a.del").on("click",function(){
-        console.log($(this));
+        //console.log($(this));
         $("#selectedItem > li").remove();
+
+        resetDeletedOptions();
+        resetCurSelectedOptions();
+
+        //console.log(deletedOptions);
     });
 
 });
 
-function init(){
+const init = () =>{
     setBaseOptions("DEFAULT");  //옵션 세팅
-
 
     sortInit(); //Sortable.js 동작
 }
+
+const resetDeletedOptions = () => {
+    console.log("호출?");
+    deletedOptions.length = 0;
+}
+
+const resetCurSelectedOptions = () =>{
+    curSelectedOptions.length = 0;
+}
+
+const displayCurSelectedOptions = () => {
+    console.log(curSelectedOptions);
+
+    $('.box > p').empty();
+
+    curSelectedOptions.forEach(item => {
+        let addHtml = ``;
+        addHtml += `
+            <span> ${item.innerText} </span>
+        `;
+
+        $('.box > p').append(addHtml);
+    });
+}
+
 
 //옵션 세팅
 async function setBaseOptions(inviteType){
@@ -55,9 +87,7 @@ async function setBaseOptions(inviteType){
                 console.log(err);
 
             }
-        )
-        ;
-
+        );
 }
 
 
@@ -80,20 +110,16 @@ function sortInit(){
             if($(".sortable-item").hasClass('sortable-selected')){
                 $(".sortable-item").removeClass('sortable-selected');
             }
-            console.log("================================");
 
-            let movedItems = [];
-            el.querySelectorAll("li").forEach((item,index) => {
-                console.log(item);
-                movedItems.push(item);
-            });
+            resetCurSelectedOptions();
+            evt.to.querySelectorAll("li").forEach((item, index) => {
+                curSelectedOptions.push(item);
+            })
 
-            console.log(movedItems);
-
-
+            console.log("=== curSelectedOptions move ===");
+            displayCurSelectedOptions();
 
         }
-
 
     });
 
@@ -115,19 +141,21 @@ function sortInit(){
         selectedClass: 'sortable-selected', // The class applied to the selected items
 
         onSelect: function(evt){
-            curSelectedOptions.push(evt.item.getAttribute("data-id"));
+            deletedOptions.push(evt.item.getAttribute("data-id"));
+            //console.log(" === deletedOptions === ");
 
-            //console.log(curSelectedOptions);
+            console.log(deletedOptions);
 
         },
 
         onDeselect: function(evt){
 
+            deletedOptions =
+                deletedOptions.filter((data) => evt.item.getAttribute("data-id") != data);
 
-            curSelectedOptions =
-                curSelectedOptions.filter((data) => evt.item.getAttribute("data-id") != data);
 
-            //console.log(curSelectedOptions);
+            //console.log(" === deletedOptions === ");
+            console.log("onDeselect 1");
         },
     });
 
