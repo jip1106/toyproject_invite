@@ -10,23 +10,54 @@ $(function(){
         setBaseOptions(inviteType);
     });
 
-    //선택한 옵션 삭제
+    //선택한 옵션 삭제 (선택삭제 버튼 클릭)
     $(".ul_btn > li > a.sel_del").on("click",function(){
-        //console.log($(this));
-        console.log("click a.sel_del 2");
-        console.log(deletedOptions);
+         deletedOptions.forEach((item, index) => {
+
+            let ele = $("#selectedItem > li").get();
+
+            $.each(ele, function(index, li){
+
+                if($(li).attr("data-id") == $(item).attr("data-id")){
+                    $(li).remove();
+                }
+            });
+
+
+            ele = $(".box > p > span").get();
+            $.each(ele, function(index, span){
+
+                if($(span).attr("data-id") == $(item).attr("data-id")){
+                    $(span).remove();
+                }
+            });
+
+            curSelectedOptions =
+                    curSelectedOptions.filter((cur) => cur.dataset.id != item.dataset.id);
+
+        });
+
+
+        resetDeletedOptions();
     });
 
-    //전체 선택한 옵션 삭제
+    //전체 선택한 옵션 삭제 (초기화 버튼 클릭)
     $(".ul_btn > li > a.del").on("click",function(){
-        //console.log($(this));
+
         $("#selectedItem > li").remove();
+
 
         resetDeletedOptions();
         resetCurSelectedOptions();
 
-        //console.log(deletedOptions);
+        displayCurSelectedOptions();
+
     });
+
+
+    $(".save_btn > li > a.save").on("click", function(){
+        alert("a");
+    })
 
 });
 
@@ -37,28 +68,40 @@ const init = () =>{
 }
 
 const resetDeletedOptions = () => {
-    console.log("호출?");
     deletedOptions.length = 0;
+
+    if(curSelectedOptions.length == 0){
+        $(".actions.small.save_btn").addClass("none");
+    }
 }
 
 const resetCurSelectedOptions = () =>{
     curSelectedOptions.length = 0;
+    $(".actions.small.save_btn").addClass("none");
 }
 
 const displayCurSelectedOptions = () => {
-    console.log(curSelectedOptions);
 
     $('.box > p').empty();
 
     curSelectedOptions.forEach(item => {
         let addHtml = ``;
+
+        let data_id = item.getAttribute("data-id");
+        let data_dup = item.getAttribute("data-dup");
         addHtml += `
-            <span> ${item.innerText} </span>
+            <span data-id="${data_id}" data-dup = "${data_dup}"> ${item.innerText} </span>
         `;
 
         $('.box > p').append(addHtml);
     });
+
+    if(curSelectedOptions.length > 0){
+        $(".actions.small.save_btn").removeClass("none");
+    }
+
 }
+
 
 
 //옵션 세팅
@@ -112,11 +155,27 @@ function sortInit(){
             }
 
             resetCurSelectedOptions();
+
             evt.to.querySelectorAll("li").forEach((item, index) => {
-                curSelectedOptions.push(item);
+
+                curSelectedOptions.forEach((li) => {
+
+                    if(item.dataset.dup == "false" && li.dataset.id.includes(item.dataset.id)){
+                        alert("중복 가능한 옵션이 아닙니다.");
+                        li.remove();
+                        curSelectedOptions.pop();
+                        return;
+                    }
+
+                    if(li.dataset.id == item.dataset.id){
+                        item.dataset.id = item.dataset.id + "_" + index;
+                    }
+                })
+
+                 curSelectedOptions.push(item);
+
             })
 
-            console.log("=== curSelectedOptions move ===");
             displayCurSelectedOptions();
 
         }
@@ -141,21 +200,23 @@ function sortInit(){
         selectedClass: 'sortable-selected', // The class applied to the selected items
 
         onSelect: function(evt){
-            deletedOptions.push(evt.item.getAttribute("data-id"));
-            //console.log(" === deletedOptions === ");
-
-            console.log(deletedOptions);
+            //console.log(evt);
+            deletedOptions = [...evt.items];
 
         },
 
         onDeselect: function(evt){
 
-            deletedOptions =
-                deletedOptions.filter((data) => evt.item.getAttribute("data-id") != data);
+            //선택삭제 버튼을 눌렀을때 onDeselect 이벤트 안타도록 수정
+            if(evt.originalEvent instanceof MouseEvent){
+                return false;
+            }
 
+            //사용자가 직접 해제
+            if(evt.originalEvent instanceof TouchEvent){
+                deletedOptions = [...evt.items];
+            }
 
-            //console.log(" === deletedOptions === ");
-            console.log("onDeselect 1");
         },
     });
 

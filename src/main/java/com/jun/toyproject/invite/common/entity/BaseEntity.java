@@ -1,9 +1,6 @@
 package com.jun.toyproject.invite.common.entity;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,9 +34,15 @@ public abstract class BaseEntity {
 
     @PrePersist
     public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
+        LocalDateTime now = LocalDateTime.now();
+        createdAt = now;
+        updateAt = now;
+
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updateAt = LocalDateTime.now();
     }
 
 }
