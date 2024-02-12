@@ -31,6 +31,9 @@ public class BaseOptionResponse {
     @Schema(description = "중복 가능 옵션")
     private boolean dupCheck;
 
+    @Schema(description = "설명")
+    private String description;
+
     public static BaseOptionResponse from(BaseOption baseOption){
         return new BaseOptionResponse(
                 baseOption.getBoSeq(),
@@ -38,7 +41,8 @@ public class BaseOptionResponse {
                 baseOption.getName(),
                 baseOption.getInviteType(),
                 baseOption.getPriority(),
-                baseOption.isDupCheck()
+                baseOption.isDupCheck(),
+                baseOption.getDescription()
         );
     }
 }

@@ -30,5 +30,8 @@ public class BaseOption extends BaseEntity {
 
     private Integer priority;
 
+    @Lob
+    private String description;
+
 
 }

@@ -25,6 +25,30 @@
                     height: fit-content;
                     display: inline-block;}
 
+/* 말풍선 */
+.balloon {
+     position: absolute;
+     margin: -60px;
+     width: 200px;
+     height: 50px;
+     background: pink;
+     border-radius: 10px;
+     font-size: 12px;
+     padding: 8px;
+     left: 15%;
+}
+.balloon:after {
+     border-bottom: 0px solid transparent;
+     border-left: 10px solid transparent;
+     border-right: 10px solid transparent;
+     border-top: 10px solid pink;
+     content: "";
+     position: absolute;
+     top: 50px;
+     left: 13px;
+ }
+}
+
 
 /* 스크롤바 st */
 .option::-webkit-scrollbar {width: 8px;}   /*스크롤바의 너비*/

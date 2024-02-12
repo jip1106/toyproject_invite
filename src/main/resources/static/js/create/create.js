@@ -112,10 +112,12 @@ async function setBaseOptions(inviteType){
     const baseOptions =
         await getBaseOptions(inviteType).then(
             (res) => {
+                console.log(res);
                 let addHtml = ``;
                 res.forEach( (baseOption) => {
                     addHtml +=
                         `
+                            <div class="balloon none">${baseOption.description}</div>
                             <li class="sortable-item" data-id="${baseOption.code}" data-dup="${baseOption.dupCheck}">
                                 ${baseOption.name}
                             </li>
