@@ -21,7 +21,8 @@
 - 완료후) 네이버,카카오,구글 소셜로그인 연동 
 
 <hr>
-
+ 청첩장 직접 만들기 참고 화면
+ https://fromtoday.co.kr/mcards/orders/yr9FPe/?mcard_no=1007
 # 회원
 <hr>  
 

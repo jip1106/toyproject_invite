@@ -1,54 +1,19 @@
 /* 기본 옵션 영역*/
 .option{height:400px; border:1px solid #eaeaea; overflow-y:scroll;}
 .option > ul{height:inherit; margin: 0 0 0 0; padding: 0 0 0 0;}
-.option > ul > li{
-    list-style: none;
-    height: 55px;
-    border-bottom: 1px solid #eaeaea;
-    text-align: center;
-    padding: 1rem 1rem 0 0;
-    font-size: 0.7rem;
-}
+.option > ul > li{list-style: none;height: 55px;border-bottom: 1px solid #eaeaea;text-align: center;padding: 1rem 1rem 0 0;font-size: 0.7rem;}
 
 /* 초기화 버튼 */
 .ul_btn{text-align:right;}
 /* 저장 버튼 */
 .save_btn{text-align:right;}
 
-
-.box > p > span{    border-radius: 10px;
-                    margin: 5px;
-                    padding: 5px;
-                    background: rgba(144, 144, 144, 0.075);
-                    border-color: rgba(144, 144, 144, 0.25);
-                    width: fit-content;
-                    height: fit-content;
-                    display: inline-block;}
+/*선택옵션*/
+.box > p > span{    border-radius: 10px;margin: 5px;padding: 5px;background: rgba(144, 144, 144, 0.075);border-color: rgba(144, 144, 144, 0.25);width: fit-content;height: fit-content;display: inline-block;}
 
 /* 말풍선 */
-.balloon {
-     position: absolute;
-     margin: -60px;
-     width: 200px;
-     height: 50px;
-     background: pink;
-     border-radius: 10px;
-     font-size: 12px;
-     padding: 8px;
-     left: 15%;
-}
-.balloon:after {
-     border-bottom: 0px solid transparent;
-     border-left: 10px solid transparent;
-     border-right: 10px solid transparent;
-     border-top: 10px solid pink;
-     content: "";
-     position: absolute;
-     top: 50px;
-     left: 13px;
- }
-}
-
+.balloon {position: absolute;margin: -60px;width: 200px;height: 50px;background: pink;border-radius: 10px;font-size: 12px;padding: 8px;left: 15%;}
+.balloon:after {border-bottom: 0px solid transparent;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 10px solid pink;content: "";position: absolute;top: 50px;left: 13px;}
 
 /* 스크롤바 st */
 .option::-webkit-scrollbar {width: 8px;}   /*스크롤바의 너비*/
@@ -56,5 +21,5 @@
 .option::-webkit-scrollbar-track {background-color: #eaeaea; }/*스크롤바 트랙 색상*/
 /* 스크롤바 end */
 
-
-
+.preview > .preview_inner {border: 2px solid #eaeaea;border-radius: 30px; height: fit-content; min-height: 800px;}
+.preview > .preview_inner > .addr_map > #map {width:auto;height:300px; border-radius:inherit;margin:1rem;}

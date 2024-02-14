@@ -10,6 +10,19 @@ const joinComma = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
+const padZero = (num) => {
+    return num < 10 ? '0' + num : num;
+}
+
+// 날짜를 원하는 형식으로 포맷하는 함수
+const getFormattedDate = (date, type) => {
+    let year = date.getFullYear();
+    let month = padZero(date.getMonth() + 1);
+    let day = padZero(date.getDate());
+    return year + type + month + type + day;
+}
+
+
 //null 체크 null인 경우 return false null이 아닌경우 return true;
 const isNotNull = (value) => {
 

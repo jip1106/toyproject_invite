@@ -1,16 +1,29 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{/user/layout/common/base :: common_header(~{::title}, ~{::script}, ~{::link})}">
     <title> 초대장 만들기 </title>
-
     <link rel="stylesheet" href="/css/create/create.css">
+    <!--/* 달력 */-->
+    <link rel="stylesheet" href="/css/toastui/toastui-calendar.min.css" />
 
     <script type="text/javascript" src="/js/sortablejs/Sortable.min.js"></script>
     <script type="text/javascript" src="/js/api/api_create.js"></script>
     <script type="text/javascript" src="/js/create/create.js"></script>
+
+
+
+
 </head>
 
 <body>
-
+    <!--/*
+    <th:block th:replace="~{/user/layout/common/base :: customScript }">
+        <script>
+            $(function(){
+                console.log("이 페이지에서만 실행하는 스크립트 입니다.");
+            });
+        </script>
+    </th:block>
+    */-->
 <!--/* 공통 영역 st */-->
 <!-- Header -->
 <header th:replace="~{/user/layout/common/header :: headerFragment}"></header>

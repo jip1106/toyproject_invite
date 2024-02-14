@@ -8,6 +8,15 @@
 
 <body>
 
+<th:block th:replace="~{/user/layout/common/base :: customScript }">
+    <script>
+        $(function(){
+            console.log("이 페이지에서만 실행하는 스크립트 입니다.");
+        });
+    </script>
+</th:block>
+
+
 <!--/* 공통 영역 st */-->
 <!-- Header -->
 <header th:replace="~{/user/layout/common/header :: headerFragment}"></header>

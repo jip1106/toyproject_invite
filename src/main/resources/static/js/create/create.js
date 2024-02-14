@@ -43,23 +43,21 @@ $(function(){
 
     //전체 선택한 옵션 삭제 (초기화 버튼 클릭)
     $(".ul_btn > li > a.del").on("click",function(){
-
         $("#selectedItem > li").remove();
-
-
         resetDeletedOptions();
-        resetCurSelectedOptions();
-
-        displayCurSelectedOptions();
+        displayRetry();
 
     });
 
 
     $(".save_btn > li > a.save").on("click", function(){
         alert("a");
-    })
+    });
+
 
 });
+
+
 
 const init = () =>{
     setBaseOptions("DEFAULT");  //옵션 세팅
@@ -99,7 +97,18 @@ const displayCurSelectedOptions = () => {
     if(curSelectedOptions.length > 0){
         $(".actions.small.save_btn").removeClass("none");
     }
+}
 
+//sortable.js 오류로 잘못 생성되는경우
+const displayRetry = () => {
+
+    resetCurSelectedOptions();
+
+    $.each( $("#selectedItem > li"), function(index, item){
+        curSelectedOptions.push(item);
+    });
+
+    displayCurSelectedOptions();
 }
 
 
@@ -149,21 +158,29 @@ function sortInit(){
         animation: 150, // 드래그 애니메이션 지속 시간
         multiDrag: true, // Enable multi-drag
         selectedClass: 'sortable-selected', // The class applied to the selected items
-        onEnd: function(evt){
+        onStart: function(evt){
+            console.log("function Evt");
+            console.log(evt);
+            console.log(evt.item);
 
+            $(evt.item).prev().removeClass("none");
+        },
+        onEnd: function(evt){
+            console.log("onEnd Evt");
             //console.log(movedItems);
             if($(".sortable-item").hasClass('sortable-selected')){
                 $(".sortable-item").removeClass('sortable-selected');
             }
 
+            $(".balloon").addClass("none");
+
             resetCurSelectedOptions();
 
             evt.to.querySelectorAll("li").forEach((item, index) => {
-
                 curSelectedOptions.forEach((li) => {
 
                     if(item.dataset.dup == "false" && li.dataset.id.includes(item.dataset.id)){
-                        alert("중복 가능한 옵션이 아닙니다.");
+                        alert(`${item.innerText}(은)는 중복 가능한 옵션이 아닙니다.`);
                         li.remove();
                         curSelectedOptions.pop();
                         return;
@@ -176,11 +193,19 @@ function sortInit(){
 
                  curSelectedOptions.push(item);
 
-            })
+            });
 
-            displayCurSelectedOptions();
+            displayRetry();
 
-        }
+
+        },
+        onSelect: function(evt){
+            $(evt.item).prev().removeClass("none");
+        },
+        onDeselect: function(evt){
+            $(evt.item).prev().addClass("none");
+        },
+
 
     });
 
@@ -220,8 +245,14 @@ function sortInit(){
             }
 
         },
-    });
+        onEnd: function(evt){
 
+            displayRetry();
+
+        }
+    });
 }
+
+
 
 

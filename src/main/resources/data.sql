@@ -6,5 +6,5 @@ INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,d
 INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_2','문구','DEFAULT',2,true,'문구를 작성합니다 스타일을 지정할 수 있습니다.');
 INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_3','달력','DEFAULT',3,false, '기념일 날짜를 선택합니다. 달력으로 표기 됩니다.');
 INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_4','연락처','DEFAULT',5,true, '연락처를 표시 합니다.');
-INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_5','사진','DEFAULT',4,true, '사진을 업로드 합니다.');
-INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_6','지도','DEFAULT',6,false,'지도를 표시 합니다.');
+INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_5','사진','DEFAULT',4,true, '사진을 업로드 합니다. 업로드할 사진 갯수를 선택할 수 있습니다.');
+INSERT INTO BASE_OPTION (bo_seq, bo_code, name, invite_type,priority,dup_check,description) values (NEXTVAL('base_option_seq'), 'BASEOPTION_6','지도','DEFAULT',6,false,'주소를 설정하고, 설정한 주소를 지도를 표시 합니다.');
