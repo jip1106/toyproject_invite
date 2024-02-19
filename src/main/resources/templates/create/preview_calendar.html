@@ -11,11 +11,11 @@
               const calendar = new FullCalendar.Calendar(calendarEl, {
                 //plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
                 headerToolbar: {
-                  left: 'prev,next today',
+                  left: 'prev, today, next',
                   center: 'title',
-                  right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                  right: 'prev, today, next',
                 },
-                initialDate: '2018-01-12',
+                initialDate: '2018-01-12',  //사용자가 선택한 데이터
                 navLinks: true, // can click day/week names to navigate views
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
