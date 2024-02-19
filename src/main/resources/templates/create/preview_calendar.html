@@ -1,0 +1,114 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="calendarFragment" class="calendar_div">
+        <div id='calendar'></div>
+
+        <script src='//cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const calendarEl = document.getElementById('calendar')
+
+              const calendar = new FullCalendar.Calendar(calendarEl, {
+                //plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin ],
+                headerToolbar: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                initialDate: '2018-01-12',
+                navLinks: true, // can click day/week names to navigate views
+                editable: true,
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: [
+                  {
+                    title: 'All Day Event',
+                    start: '2018-01-01',
+                  },
+                  {
+                    title: 'Long Event',
+                    start: '2018-01-07',
+                    end: '2018-01-10'
+                  },
+                  {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2018-01-09T16:00:00'
+                  },
+                  {
+                    groupId: 999,
+                    title: 'Repeating Event',
+                    start: '2018-01-16T16:00:00'
+                  },
+                  {
+                    title: 'Conference',
+                    start: '2018-01-11',
+                    end: '2018-01-13'
+                  },
+                  {
+                    title: 'Meeting',
+                    start: '2018-01-12T10:30:00',
+                    end: '2018-01-12T12:30:00'
+                  },
+                  {
+                    title: 'Lunch',
+                    start: '2018-01-12T12:00:00'
+                  },
+                  {
+                    title: 'Meeting',
+                    start: '2018-01-12T14:30:00'
+                  },
+                  {
+                    title: 'Happy Hour',
+                    start: '2018-01-12T17:30:00'
+                  },
+                  {
+                    title: 'Dinner',
+                    start: '2018-01-12T20:00:00'
+                  },
+                  {
+                    title: 'Birthday Party',
+                    start: '2018-01-13T07:00:00'
+                  },
+                  {
+                    title: 'Click for Google',
+                    url: 'http://google.com/',
+                    start: '2018-01-28'
+                  }
+                ],
+
+                firstDay: 1,
+                dayHeaderContent: function(arg) {
+                    switch (arg.date.getUTCDay()) {
+                      case 0: // 일요일
+                        return '일';
+                      case 1: // 월요일
+                        return '월';
+                      case 2: // 화요일
+                        return '화';
+                      case 3: // 수요일
+                        return '수';
+                      case 4: // 목요일
+                        return '목';
+                      case 5: // 금요일
+                        return '금';
+                      case 6: // 토요일
+                        return '토';
+                    }
+                  },
+
+                titleFormat: function (date) {
+                  year = date.date.year;
+                  month = date.date.month + 1;
+
+                  return year + "년 " + month + "월";
+                },
+              });
+
+
+              calendar.render()
+            })
+        </script>
+    </div>
+</body>
+</html>
+

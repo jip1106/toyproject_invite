@@ -1,0 +1,8 @@
+a { color: #555;text-decoration-line: none;	}
+.fc-day-sun a {color: red;text-decoration: none;}
+.fc-day-sat a {color: blue;text-decoration: none;}
+
+.fc .fc-col-header-cell-cushion {
+  display: inline-block;
+  padding: 2px 4px;
+}

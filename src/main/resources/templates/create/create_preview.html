@@ -4,66 +4,13 @@
     <div th:fragment="previewFragment" class="6u 12u$(medium) right preview">
         <div class="12u 12u${small} preview_inner">
 
-            <script src="/js/toastui/toastui-calendar.min.js"></script>
-            <script>
-                $(function(){
-                    var Calendar = window.tui.Calendar;
-                    var cal = new Calendar('#app', {
-                        defaultView: 'month',
-                        usageStatistics: false,
-                        isReadOnly: true,
-                        month: {
-                          visibleWeeksCount: 3,
-                        },
-                    });
 
-                    updateNavbarRange();
-
-                    // 오늘 버튼 클릭 시 오늘 날짜로 이동
-                    $('.today').on('click', function() {
-                        cal.today();
-                        updateNavbarRange();
-                    });
-
-                    // 이전 버튼 클릭 시 이전 달력 보기로 이동
-                    $('.prev').on('click', function() {
-                        cal.prev();
-                        updateNavbarRange();
-                    });
-
-                    // 다음 버튼 클릭 시 다음 달력 보기로 이동
-                    $('.next').on('click', function() {
-                        cal.next();
-                        updateNavbarRange();
-                    });
-
-
-                    function displaySelectedDate(date) {
-                        // 선택된 날짜를 표시하는 로직을 구현합니다.
-                        console.log('Selected date:', date);
-                        // 예시: 선택된 날짜를 어딘가에 표시하거나 사용할 수 있습니다.
-                    }
-
-                     // 날짜 범위 업데이트 함수
-                    function updateNavbarRange() {
-                        var range = getFormattedDate(cal.getDate(),"-");
-                        $('.navbar--range').text(range);
-                        displaySelectedDate(cal.getDate());
-                    }
-
-                });
-
-
-
-
-            </script>
             <!--/* 달력 표시 영역 */-->
-            <div class="header">
-                <nav class="navbar">
-                    <span class="navbar--range"></span>
-                </nav>
+            <div th:replace="~{/create/preview_calendar :: calendarFragment }">
+
+
+
             </div>
-            <div id="app" style="height: 330px"></div>
 
             <!--/* 지도 표시 영역 */-->
             <div th:replace="~{/create/preview_map :: mapFragment }">
