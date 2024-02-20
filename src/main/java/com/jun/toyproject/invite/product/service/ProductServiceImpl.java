@@ -1,18 +1,28 @@
 package com.jun.toyproject.invite.product.service;
 
+import com.jun.toyproject.invite.common.code.CodeGenerator;
 import com.jun.toyproject.invite.common.exception.InviteException;
 import com.jun.toyproject.invite.common.type.InviteType;
+import com.jun.toyproject.invite.member.entity.Member;
+import com.jun.toyproject.invite.member.repository.MemberRepository;
 import com.jun.toyproject.invite.product.entity.BaseOption;
+import com.jun.toyproject.invite.product.entity.SltOptions;
+import com.jun.toyproject.invite.product.model.request.SltOptionRequest;
 import com.jun.toyproject.invite.product.model.response.BaseOptionResponse;
+import com.jun.toyproject.invite.product.model.response.SltOptionResponse;
 import com.jun.toyproject.invite.product.repository.BaseOptionRepository;
 import com.jun.toyproject.invite.product.repository.ProductRepository;
+import com.jun.toyproject.invite.product.repository.SltOptionsRepository;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,6 +32,8 @@ import java.util.stream.Stream;
 public class ProductServiceImpl implements ProductService{
 
     private final BaseOptionRepository baseOptionRepository;
+    private final SltOptionsRepository sltOptionsRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public List<BaseOptionResponse> findByInviteType(InviteType inviteType) throws InviteException {
@@ -44,5 +56,31 @@ public class ProductServiceImpl implements ProductService{
         }
 
         return rtnList;
+    }
+
+    @Transactional
+    @Override
+    public List<SltOptionResponse> insertSltOptions(SltOptionRequest sltOptionRequest, String sMemberId) throws InviteException {
+        List<String> optionIds = sltOptionRequest.getOptionIds();
+        List<Integer> priorities = sltOptionRequest.getPriorities();
+
+        int size = optionIds.size();
+
+        List<SltOptionResponse> rtnList = new ArrayList<>();
+        List<SltOptions> optionsList = new ArrayList<>();
+
+        String sltCode = CodeGenerator.generateWithPrefix("SLT");
+
+        Member findMember = memberRepository.findByMemberId(sMemberId)
+                .orElseThrow(() -> new InviteException("로그인 상태가 끊어졌습니다.", HttpStatus.NOT_FOUND));
+
+        for(int i=0; i<size; i++){
+            optionsList.add(SltOptions.of(sltCode, optionIds.get(i), priorities.get(i), findMember) );
+        }
+
+        sltOptionsRepository.saveAll(optionsList);
+
+
+        return SltOptionResponse.from(optionsList);
     }
 }

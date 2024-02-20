@@ -6,3 +6,18 @@ async function getBaseOptions(inviteType){
         type: 'GET'
     });
 };
+
+
+//옵션 저장
+function addSltOptions(requestData){
+    const apiUrl = '/api/option/saveSltOptions';
+
+    console.log(requestData);
+
+    return $.ajax({
+        url : apiUrl,
+        type : 'POST',
+        contentType : 'application/json',
+        data : JSON.stringify(requestData)
+    });
+};

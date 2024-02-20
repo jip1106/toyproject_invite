@@ -2,15 +2,23 @@ package com.jun.toyproject.invite.product.entity;
 
 import com.jun.toyproject.invite.common.entity.BaseEntity;
 import com.jun.toyproject.invite.common.type.InviteType;
+import com.jun.toyproject.invite.product.model.request.SltOptionRequest;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BaseOption extends BaseEntity {
+
+    public BaseOption(String code, Integer priority){
+        this.code = code;
+        this.priority = priority;
+    }
 
     @Id
     @GeneratedValue
@@ -32,6 +40,7 @@ public class BaseOption extends BaseEntity {
 
     @Lob
     private String description;
+
 
 
 }

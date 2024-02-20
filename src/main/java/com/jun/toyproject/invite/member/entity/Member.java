@@ -4,11 +4,15 @@ import com.jun.toyproject.invite.common.entity.BaseEntity;
 import com.jun.toyproject.invite.common.type.SignupType;
 import com.jun.toyproject.invite.common.type.MemberType;
 import com.jun.toyproject.invite.member.model.request.MemberRequest;
+import com.jun.toyproject.invite.product.entity.SltOptions;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Slf4j
@@ -22,7 +26,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="member_id")
     private String memberId;
 
     @Column(nullable = false)
@@ -37,6 +41,8 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private SignupType signupType;
 
+    @OneToMany(mappedBy = "member")
+    private List<SltOptions> sltOptions = new ArrayList<SltOptions>();
 
 
     public Member(MemberRequest memberDto) {

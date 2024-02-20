@@ -5,15 +5,22 @@
         <div class="12u 12u${small} preview_inner">
 
 
-            <!--/* 달력 표시 영역 */-->
+            <!--/*
+                달력 표시 영역
+                선택한 옵션에 달력표시가 있는경우 표기
+            */-->
             <div th:replace="~{/create/preview_calendar :: calendarFragment }">
 
 
 
             </div>
 
-            <!--/* 지도 표시 영역 */-->
-            <div th:replace="~{/create/preview_map :: mapFragment }">
+            <!--/*
+                지도 표시 영역
+                선택한 옵션에 지도가 있는경우 표기
+
+             */-->
+            <div th:if="${false}" th:replace="~{/create/preview_map :: mapFragment }">
 
             </div>
 

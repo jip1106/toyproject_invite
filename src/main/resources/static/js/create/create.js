@@ -51,9 +51,24 @@ $(function(){
 
 
     $(".save_btn > li > a.save").on("click", function(){
-        alert("a");
-    });
+        let saveObj = {};
+        let optionIds = [];
+        let priorities = [];
 
+        $.each(curSelectedOptions, (index, item) => {
+            optionIds.push($(item).attr("data-id"));
+            priorities.push(index);
+        });
+
+        saveObj = {
+            optionIds : optionIds,
+            priorities : priorities
+        };
+
+        //옵션 저장
+        saveSelectedOptions(saveObj);
+
+    });
 
 });
 
@@ -144,7 +159,7 @@ async function setBaseOptions(inviteType){
         );
 }
 
-
+//Sortable.js 세팅 st
 function sortInit(){
     //BASE OPTION
     let el = document.getElementById('baseItem');
@@ -159,15 +174,10 @@ function sortInit(){
         multiDrag: true, // Enable multi-drag
         selectedClass: 'sortable-selected', // The class applied to the selected items
         onStart: function(evt){
-            console.log("function Evt");
-            console.log(evt);
-            console.log(evt.item);
-
             $(evt.item).prev().removeClass("none");
         },
         onEnd: function(evt){
-            console.log("onEnd Evt");
-            //console.log(movedItems);
+
             if($(".sortable-item").hasClass('sortable-selected')){
                 $(".sortable-item").removeClass('sortable-selected');
             }
@@ -177,21 +187,27 @@ function sortInit(){
             resetCurSelectedOptions();
 
             evt.to.querySelectorAll("li").forEach((item, index) => {
+                let pushData = true;
                 curSelectedOptions.forEach((li) => {
 
                     if(item.dataset.dup == "false" && li.dataset.id.includes(item.dataset.id)){
                         alert(`${item.innerText}(은)는 중복 가능한 옵션이 아닙니다.`);
                         li.remove();
-                        curSelectedOptions.pop();
+                        pushData = false;
+                        //curSelectedOptions.pop();
                         return;
                     }
 
-                    if(li.dataset.id == item.dataset.id){
-                        item.dataset.id = item.dataset.id + "_" + index;
-                    }
+//
+//                    if(li.dataset.id == item.dataset.id){
+//                        item.dataset.id = item.dataset.id + "_" + index;
+//                    }
                 })
 
-                 curSelectedOptions.push(item);
+                if(pushData){
+                    curSelectedOptions.push(item);
+                }
+
 
             });
 
@@ -227,7 +243,7 @@ function sortInit(){
         selectedClass: 'sortable-selected', // The class applied to the selected items
 
         onSelect: function(evt){
-            //console.log(evt);
+
             deletedOptions = [...evt.items];
 
         },
@@ -251,6 +267,24 @@ function sortInit(){
 
         }
     });
+}
+// Sortable.js end
+
+
+async function saveSelectedOptions(saveObj){
+
+    addSltOptions(saveObj).then(
+        (response) => {
+            //옵션저장 성공
+            console.log(response);
+        },
+        (errorResponse) => {
+            //옵션 저장 실패
+            console.log(errorResponse);
+
+        }
+    );
+
 }
 
 
