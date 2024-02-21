@@ -2,10 +2,7 @@ let curSelectedOptions = [];
 let deletedOptions = [];
 
 $(function(){
-
     checkSaveItem();
-
-    init();
 
     //타입 선택
     $("input[name='inviteType']").on("change",function(){
@@ -129,22 +126,6 @@ const displayRetry = () => {
     displayCurSelectedOptions();
 }
 
-async function checkSaveItem(){
-
-    await chkSaveItem().then(
-        (response) => {
-
-            console.log(response);
-        },
-        (errorResponse) => {
-
-            console.log(errorResponse);
-
-        }
-    );
-
-
-}
 
 //옵션 세팅
 async function setBaseOptions(inviteType){
@@ -154,7 +135,6 @@ async function setBaseOptions(inviteType){
     const baseOptions =
         await getBaseOptions(inviteType).then(
             (res) => {
-                console.log(res);
                 let addHtml = ``;
                 res.forEach( (baseOption) => {
                     addHtml +=
@@ -300,6 +280,26 @@ async function saveSelectedOptions(saveObj){
             //옵션 저장 실패
             console.log(errorResponse);
 
+        }
+    );
+}
+
+async function checkSaveItem(){
+
+    await chkSaveItem().then(
+        (response) => {
+            //작성중인게 있을 경우
+            if(response.length > 0){
+                $.each(response, function(index ,item){
+                    console.log(index, item);
+                });
+            }else{
+                init();
+            }
+        },
+        (errorResponse) => {
+            init();
+            console.log(errorResponse);
         }
     );
 

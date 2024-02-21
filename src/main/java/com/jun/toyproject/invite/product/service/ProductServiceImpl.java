@@ -88,12 +88,21 @@ public class ProductServiceImpl implements ProductService{
 
         sltOptionsRepository.saveAll(optionsList);
 
-
-        return SltOptionResponse.from(optionsList);
+        return optionsList
+                .stream()
+                .map(SltOptionResponse::from).collect(Collectors.toList());
     }
 
     @Override
     public List<SaveOptionResponse> chkSaveItem(String sMemberId) {
-        return null;
+        Member findMember = memberRepository.findByMemberId(sMemberId)
+                .orElseThrow(() -> new InviteException("로그인 상태가 끊어졌습니다." , HttpStatus.NOT_FOUND));
+
+        List<SaveOption> saveOptions = saveOptionRepository.findByMember(findMember);
+
+
+        return saveOptions
+                .stream()
+                .map(SaveOptionResponse::from).collect(Collectors.toList());
     }
 }
