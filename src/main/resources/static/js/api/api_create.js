@@ -21,3 +21,14 @@ function addSltOptions(requestData){
         data : JSON.stringify(requestData)
     });
 };
+
+//저장된 값이 있는지 확인
+async function chkSaveItem(){
+    const apiUrl = '/api/option/chkSaveItem';
+
+    return await $.ajax({
+            url : apiUrl,
+            type: 'GET'
+        });
+
+}

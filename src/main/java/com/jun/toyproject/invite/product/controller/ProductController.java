@@ -3,6 +3,7 @@ package com.jun.toyproject.invite.product.controller;
 import com.jun.toyproject.invite.common.type.InviteType;
 import com.jun.toyproject.invite.product.model.request.SltOptionRequest;
 import com.jun.toyproject.invite.product.model.response.BaseOptionResponse;
+import com.jun.toyproject.invite.product.model.response.SaveOptionResponse;
 import com.jun.toyproject.invite.product.model.response.SltOptionResponse;
 import com.jun.toyproject.invite.product.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,8 +38,18 @@ public class ProductController {
         log.info("sMemberId :: {} " , sMemberId);
 
         return productService.insertSltOptions(sltRequest,sMemberId);
+    }
+
+    @GetMapping("/option/chkSaveItem")
+    @Operation(summary = "옵션저장 확인", description = "작성중 저장한 옵션이 있는지 확인")
+    public List<SaveOptionResponse> chkSaveItem(@SessionAttribute("sMemberId") String sMemberId){
+        log.info("sMemberId :: {} " , sMemberId);
+
+        return productService.chkSaveItem(sMemberId);
+
 
     }
+
 
 
 }

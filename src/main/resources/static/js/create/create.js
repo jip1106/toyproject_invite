@@ -2,6 +2,9 @@ let curSelectedOptions = [];
 let deletedOptions = [];
 
 $(function(){
+
+    checkSaveItem();
+
     init();
 
     //타입 선택
@@ -126,7 +129,22 @@ const displayRetry = () => {
     displayCurSelectedOptions();
 }
 
+async function checkSaveItem(){
 
+    await chkSaveItem().then(
+        (response) => {
+
+            console.log(response);
+        },
+        (errorResponse) => {
+
+            console.log(errorResponse);
+
+        }
+    );
+
+
+}
 
 //옵션 세팅
 async function setBaseOptions(inviteType){

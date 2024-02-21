@@ -4,6 +4,7 @@ import com.jun.toyproject.invite.common.entity.BaseEntity;
 import com.jun.toyproject.invite.common.type.SignupType;
 import com.jun.toyproject.invite.common.type.MemberType;
 import com.jun.toyproject.invite.member.model.request.MemberRequest;
+import com.jun.toyproject.invite.product.entity.SaveOption;
 import com.jun.toyproject.invite.product.entity.SltOptions;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -42,7 +43,7 @@ public class Member extends BaseEntity {
     private SignupType signupType;
 
     @OneToMany(mappedBy = "member")
-    private List<SltOptions> sltOptions = new ArrayList<SltOptions>();
+    private List<SaveOption> saveOptions = new ArrayList<SaveOption>();
 
 
     public Member(MemberRequest memberDto) {

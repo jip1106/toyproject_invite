@@ -16,6 +16,7 @@ public class SltOptions extends BaseEntity {
 
     @Id
     @GeneratedValue
+    @Column(name="slt_seq")
     private Long sltSeq;
 
     @Column(nullable = false)
@@ -25,20 +26,24 @@ public class SltOptions extends BaseEntity {
 
     private Integer priority;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="member_seq")
+//    private Member member;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_seq")
-    private Member member;
+    @JoinColumn(name="save_seq")
+    private SaveOption saveOption;
 
 
-    public SltOptions(String sltCode, String boCode, Integer priority, Member findMember) {
+    public SltOptions(String sltCode, String boCode, Integer priority , SaveOption saveOption) {
         this.sltCode = sltCode;
         this.boCode = boCode;
         this.priority = priority;
-        this.member = findMember;
+        this.saveOption = saveOption;
     }
 
-    public static SltOptions of(String sltCode, String boCode, Integer priority, Member findMember){
-        return new SltOptions(sltCode, boCode, priority,findMember);
+    public static SltOptions of(String sltCode, String boCode, Integer priority, SaveOption saveOption){
+        return new SltOptions(sltCode, boCode, priority,saveOption);
     }
 
 

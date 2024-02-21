@@ -6,12 +6,15 @@ import com.jun.toyproject.invite.common.type.InviteType;
 import com.jun.toyproject.invite.member.entity.Member;
 import com.jun.toyproject.invite.member.repository.MemberRepository;
 import com.jun.toyproject.invite.product.entity.BaseOption;
+import com.jun.toyproject.invite.product.entity.SaveOption;
 import com.jun.toyproject.invite.product.entity.SltOptions;
 import com.jun.toyproject.invite.product.model.request.SltOptionRequest;
 import com.jun.toyproject.invite.product.model.response.BaseOptionResponse;
+import com.jun.toyproject.invite.product.model.response.SaveOptionResponse;
 import com.jun.toyproject.invite.product.model.response.SltOptionResponse;
 import com.jun.toyproject.invite.product.repository.BaseOptionRepository;
 import com.jun.toyproject.invite.product.repository.ProductRepository;
+import com.jun.toyproject.invite.product.repository.SaveOptionRepository;
 import com.jun.toyproject.invite.product.repository.SltOptionsRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +36,8 @@ public class ProductServiceImpl implements ProductService{
 
     private final BaseOptionRepository baseOptionRepository;
     private final SltOptionsRepository sltOptionsRepository;
+    private final SaveOptionRepository saveOptionRepository;
+
     private final MemberRepository memberRepository;
 
     @Override
@@ -69,18 +74,26 @@ public class ProductServiceImpl implements ProductService{
         List<SltOptionResponse> rtnList = new ArrayList<>();
         List<SltOptions> optionsList = new ArrayList<>();
 
-        String sltCode = CodeGenerator.generateWithPrefix("SLT");
+        String saveCode = CodeGenerator.generateWithPrefix("SAVE");
 
         Member findMember = memberRepository.findByMemberId(sMemberId)
                 .orElseThrow(() -> new InviteException("로그인 상태가 끊어졌습니다.", HttpStatus.NOT_FOUND));
 
+
+        SaveOption saveOption = saveOptionRepository.save(SaveOption.of(saveCode, false, findMember));
+
         for(int i=0; i<size; i++){
-            optionsList.add(SltOptions.of(sltCode, optionIds.get(i), priorities.get(i), findMember) );
+            optionsList.add(SltOptions.of(saveCode,optionIds.get(i), priorities.get(i), saveOption) );
         }
 
         sltOptionsRepository.saveAll(optionsList);
 
 
         return SltOptionResponse.from(optionsList);
+    }
+
+    @Override
+    public List<SaveOptionResponse> chkSaveItem(String sMemberId) {
+        return null;
     }
 }
